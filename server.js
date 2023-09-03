@@ -4,7 +4,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // 设置静态文件的MIME类型
-app.use(express.static(path.join(__dirname), {
+app.use('/dist', express.static(path.join(__dirname, 'dist'), {
   setHeaders: function (res, pathToFile) {
     if (pathToFile.endsWith('.js')) {
       res.setHeader('Content-Type', 'text/javascript');
