@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Firefly Model </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+        </script>
+
+</head>
+
+<body>
+    <div id="header">
+        <a href="cover.html" class="logo">SwarmVista</a>
+        <span class="vertical-divider"></span>
+        <div id="model-links">
+            <a href="boids.html">Boids Model</a>
+            <a href="fish.html">Fish Model</a>
+            <a href="bird.html">Bird Model</a>
+            <a href="predator.html">Predator-Prey Model</a>
+            <a href="fruitfly.html">FruitFly Model</a>
+            <a href="fa_firefly.html" class="active">Firefly Model</a>
+        </div>
+    </div>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-2" id="left-sidebar">
+                    <h2>FireFly Model</h2>
+                    <!-- Model Introduction -->
+                    <div class="model-intro">
+                        <p>Fireflies, with their synchronized lighting, have long fascinated observers. The Firefly
+                            model tries to decode this phenomenon.
+                            Each firefly, driven by intrinsic timers and influenced by its neighbors, manages to sync
+                            its light emission with others.
+                            This results in entire groups of fireflies illuminating at once, a wonder of nature captured
+                            by understanding individual behavior and collective interaction.
+                            <br>
+                            <b><u><i>Reduce the brightness of the light and watch the fireflies dance!</i></u></b>
+                        </p>
+                    </div>
+                    <hr class="custom-hr">
+                    <!-- Video Introduction -->
+                    <div class="model-intro">
+                        <h3>Video Introduction</h3>
+                        <iframe width=100% height=200 src="https://www.youtube.com/embed/QRtt_cJSMNk"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <hr class="custom-hr">
+                    <div class="model-intro">
+                        <h3>Related Literature</h3>
+                        <ul class="literature-list">
+                            <li><a href="https://www.inderscienceonline.com/doi/abs/10.1504/IJSI.2013.055801">Firefly
+                                    algorithm: recent advances and applications</a></li>
+                            <li><a href="https://www.sciencedirect.com/science/article/pii/S2210650213000461">A
+                                    comprehensive review of firefly algorithms</a></li>
+                            <li><a href="Firefly algorithm, stochastic test functions and design optimisation">Firefly
+                                    algorithm, stochastic test functions and design optimisation</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Control Panel -->
+
+
+                <div class="col-8 d-flex justify-content-center">
+                    <div class="row div-boarder">
+                        <svg id="plot" width="1300" height="930"></svg>
+                    </div>
+                </div>
+
+
+                <div class="col-2" id="right-sidebar">
+                    <div class="model-intro">
+                        <h2>Control Panel</h2>
+                        <!-- Control Buttons -->
+                        <div class="control-buttons">
+                            <button id='startBt'>Pause</button>
+                            <button id='resetBt'>Reset</button>
+                        </div>
+                        <hr class="custom-hr">
+                        <div class='row div-boarder  '>
+                            <div class="input-group">
+                                <span class="input-group-text">fruit x:</span>
+                                <input type="text" class="form-control fruit" placeholder="" id='fruitX'>
+                                <span class="input-group-text">fruit y:</span>
+                                <input type="text" class="form-control fruit" placeholder="" id='fruitY'>
+                            </div>
+                        </div>
+
+                        <div class='row div-boarder  '>
+                            <div class="input-group">
+                                <span class="input-group-text">fruit x:</span>
+                                <input type="text" class="form-control secondfruit" placeholder="" id='fruit2X'>
+                                <span class="input-group-text">fruit y:</span>
+                                <input type="text" class="form-control secondfruit" placeholder="" id='fruit2Y'>
+                            </div>
+                        </div>
+                        <hr class="custom-hr">
+                        <!-- Parameters -->
+                        <div class="row">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="ifShowPath" value="false"
+                                    id="showPathCheck">
+                                <label class="form-check-label" for="showPathCheck">
+                                    Show Path
+                                </label>
+                            </div>
+                        </div>
+                        <hr class="custom-hr">
+                        <div class="row ">
+                            <label class="form-label">Brightness:
+                                <output></output>
+                            </label>
+                            <input type="range" name='lightFactor' class="form-range" min="0" max="1" step="0.1">
+                        </div>
+
+                        <div class="row ">
+                            <label class="form-label">Number of Fireflies:
+                                <output></output>
+                            </label>
+                            <input type="range" name='numAnimal' class="form-range" min="1" max="50" step="1">
+                        </div>
+
+                        <div class="row ">
+                            <label class="form-label">Distance Factor:
+                                <output></output>
+                            </label>
+                            <input type="range" name='distanceFactor' class="form-range" min="0" max="1" step="0.1">
+                        </div>
+
+                        <div class="row ">
+                            <label class="form-label">Fruit Factor:
+                                <output></output>
+                            </label>
+                            <input type="range" name='concentrationFactor' class="form-range" min="0" max="1"
+                                step="0.1">
+                        </div>
+
+                        <div class="row ">
+                            <label class="form-label">Speed:
+                                <output></output>
+                            </label>
+                            <input type="range" name='speed' class="form-range" min="0" max="40" step="0.3">
+
+                        </div>
+
+                        <div class="row ">
+                            <label class="form-label">Attraction strength:
+                                <output></output>
+                                <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    title="Initial strength of mutual attraction between fire flies">
+                                    ?
+                                </span>
+                            </label>
+                            <input type="range" name='belta0' class="form-range" min="0" max="2" step="0.1">
+                        </div>
+
+
+                        <div class="row ">
+                            <label class="form-label">Rate of absorption of light:
+                                <output></output>
+                                <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    title="Represents the rate of absorption of light emitted by fireflies by the environment">
+                                    ?
+                                </span>
+                            </label>
+                            <input type="range" name='gama' class="form-range" min="0" max="10" step="0.1">
+                        </div>
+
+
+                        <div class="row ">
+                            <label class="form-label">Light Noise:
+                                <output></output>
+                                <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    title="The amount of random perturbation of a firefly in its flight path">
+                                    ?
+                                </span>
+                            </label>
+                            <input type="range" name='alpha' class="form-range" min="0" max="100" step="0.1">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <script src="./dist/FireFly.bundle.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+                var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                    return new bootstrap.Tooltip(tooltipTriggerEl);
+                });
+            });
+        </script>
+    </body>
+
+</html>

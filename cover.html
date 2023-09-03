@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SwarmVista </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container-fluid {
+            height: 100vh;
+            padding-left: 0;
+            padding-right: 0;
+            margin-left: 0;
+            margin-right: 0;
+            max-width: 1600px;
+            margin-top: 5%;
+        }
+
+
+        #header {
+            background-color: #ffffff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px 0;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            text-align: center;
+            z-index: 1000;
+            width: 100%;
+            height: 60px;
+            padding-left: 0;
+            padding-right: 0;
+            position: fixed;
+        }
+
+        #header .logo {
+            font-size: 1.5rem;
+            color: #000000;
+            text-decoration: none;
+        }
+
+        #header .vertical-divider {
+            height: 25px;
+            border-left: 1px solid #000000;
+            margin: 0 20px;
+        }
+
+        #model-links {
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 1.2rem;
+        }
+
+        #model-links a {
+            margin-right: 15px;
+            color: #000000;
+            text-decoration: none;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        #model-links a.active {
+            background-color: grey;
+            color: white;
+        }
+
+        #model-links a:hover {
+            background-color: #e0e0e0;
+            text-decoration: none;
+        }
+
+        h1.display-4 {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        p.business-text {
+            margin-top: 40px;
+            font-size: 1.5em;
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        h2,
+        h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .faq {
+            margin-top: 50px;
+            font-weight: normal;
+            font-size: 1.1em;
+
+        }
+
+        .faq b {
+            font-weight: bold;
+            font-size: 1.3em;
+        }
+
+        button.btn.custom-btn {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            font-size: 1.3em;
+            padding-left: 40px;
+            padding-right: 40px;
+            margin-bottom: 40px;
+            margin-top: 40px;
+
+        }
+
+
+        img.img-fluid {
+
+            position: relative;
+            margin-top: 60px;
+            z-index: 1;
+            padding: 10px;
+            background-color: #f7f7f7;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        img.img-fluid::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 30px;
+            z-index: -1;
+            border-radius: 50px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .tips-container {
+            padding: 100px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            margin-top: 200px;
+            margin-left: 100px;
+            margin-right: 100px;
+
+        }
+
+
+        .card {
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            border-radius: 20px;
+            height: 400px !important;
+            margin-top: 30px;
+        }
+
+        .card-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 100%;
+        }
+
+
+        .card-body b {
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2em;
+            padding: 10px;
+        }
+
+        .card-body p {
+            text-align: center;
+            font-size: 1.0em;
+            padding: 10px;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+        </script>
+
+</head>
+
+<body>
+
+    <div id="header">
+        <a href="cover.html" class="logo">SwarmVista</a>
+        <span class="vertical-divider"></span>
+        <div id="model-links">
+            <a href="boids.html">Boids Model</a>
+            <a href="fish.html">Fish Model</a>
+            <a href="bird.html">Bird Model</a>
+            <a href="predator.html">Predator-Prey Model</a>
+            <a href="fruitfly.html">FruitFly Model</a>
+            <a href="fa_firefly.html">Firefly Model</a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-4">
+                <h1 class="display-4">SwarmVista</h1>
+                <p class="business-text">SwarmVista integrates visualization of swarm behaviours in natural environments. You can adjust model parameters, interact directly with the models, and explore the fun of swarm behaviours!</p>
+                <a href="boids.html" target="_blank"><button class="btn custom-btn">Try Now</button></a>
+
+                <!-- FAQ Added -->
+                <div class="faq">
+                    <b>How do I access the model?</b>
+                    <p>Click the "Try Now" button above, or select a model from the tab bar at the top of the page to enter the model page.</p>
+
+                    <b>How do I operate the model?</b>
+                    <p>Adjust the model's settings in the parameter panel, and the model will immediately visualize according to the new configuration. Alternatively, you can interact directly with the model on the visualization panel using your mouse.</p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <img src="img/cover.png" alt="SwarmVista Image" class="img-fluid">
+            </div>
+        </div>
+        <div class="tips-container">
+            <h1 class="text-center">Tips and Tricks</h1>
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <b>Detailed text and video introduction</b>
+                            <p>On the left sidebar of the interface, you can read a text introduction of the model, watch videos, and access links to related literature on the model.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <b>High-performance visualization supported by D3.js</b>
+                            <p>The models on the website are visualized using D3.js, offering high flexibility. Data binding ensures intuitive and effective data updates and synchronization.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <b>Interactive visualization panel</b>
+                            <p>Most models incorporate mouse events, allowing you to experiment by clicking or double-clicking elements within the visualization panel to observe changes in the model.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <b>Reasonable initial configuration</b>
+                            <p>The model loads with default parameter settings, allowing for smooth model operation without the need for initial setup.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <b>Comprehensive control panel operations</b>
+                            <p>In the control panel, you can adjust the model's visualization effects, modify the settings of the visualization panel, and alter the model's parameters.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <b>Explanation for complex parameters</b>
+                            <p>Beside parameters that might be challenging to understand, there often are explanations, making it user-friendly for non-experts.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

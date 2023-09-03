@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Fish Model </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+        </script>
+
+</head>
+
+<body>
+    <div id="header">
+        <a href="cover.html" class="logo">SwarmVista</a>
+        <span class="vertical-divider"></span>
+        <div id="model-links">
+            <a href="boids.html">Boids Model</a>
+            <a href="fish.html"class="active">Fish Model</a>
+            <a href="bird.html">Bird Model</a>
+            <a href="predator.html">Predator-Prey Model</a>
+            <a href="fruitfly.html">FruitFly Model</a>
+            <a href="fa_firefly.html">Firefly Model</a>
+        </div>
+    </div>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2" id="left-sidebar">
+                <h2>Fish model</h2>
+                <div class="model-intro">
+                    <p>
+                        The fish model mimics the schooling behavior of fish, showing how individual aquatic organisms
+                        use local interactions to move as a whole.
+                        Each fish, gauging its surroundings, adjusts its speed and direction to its neighbours. This
+                        creates fascinating formations,
+                        such as schools of fish gracefully weaving and turning through complex environments, and it all
+                        starts with simple guiding principles.
+                        <br>
+                        <b><u><i>Move rocks, set the direction and speed of the waterflow, and let the fish move through the river you create!
+                        </i></u></b>
+                    </p>
+                </div>
+                <hr class="custom-hr">
+                <!-- Video Introduction -->
+                <div class="model-intro">
+                    <h3>Video Introduction</h3>
+                    <iframe width=100% height=200 src="https://www.youtube.com/embed/15B8qN9dre4"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <hr class="custom-hr">
+                <!-- Literature References -->
+                <div class="model-intro">
+                    <h3>Related Literature</h3>
+                    <ul class="literature-list">
+                        <li><a href="https://ieeexplore.ieee.org/abstract/document/6876179">Leader–Follower Flocking of
+                                Multiple Robotic Fish</a></li>
+                        <li><a href="https://link.springer.com/chapter/10.1007/3-540-68686-X_16">Information flocking:
+                                Data visualisation in virtual worlds using emergent behaviours</a></li>
+                        <li><a href="https://ieeexplore.ieee.org/abstract/document/9212975">Procedural Animation
+                                Generation Technology of Virtual Fish Flock</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-8 d-flex justify-content-center">
+                <svg id="chart"></svg>
+            </div>
+
+            <div class="col-2" id="right-sidebar">
+                <!-- Control Panel -->
+                <div class="model-intro">
+                    <h2>Control Panel</h2>
+                    <!-- Control Buttons -->
+                    <div class="control-buttons">
+                        <button id='startBt'>Pause</button>
+                        <button id='resetBt'>Reset</button>
+                    </div>
+                    <hr class="custom-hr">
+                    <!-- Parameters -->
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ifShowVision" value="false"
+                                id="showVisionCheck">
+                            <label class="form-check-label" for="showVisionCheck">
+                                Show Fish Vision
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ifBounce" value="false"
+                                id="bounceCheck">
+                            <label class="form-check-label" for="bounceCheck">
+                                Border Bounce
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr class="custom-hr">
+
+                    <div class='row div-boarder  '>
+                        <div class="input-group">
+                            <span class="input-group-text">speed x:</span>
+                            <input type="text" class="form-control water" placeholder="" id='speedx'>
+                            <span class="input-group-text">speed y:</span>
+                            <input type="text" class="form-control water" placeholder="" id='speedy'>
+                            <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                title="Setting the direction and speed of water flow">
+                                ?
+                            </span>
+                        </div>
+                    </div>
+                    <hr class="custom-hr">
+                    <div class="row">
+                        <label class="form-label">Fishes Total:
+                            <output></output>
+                        </label>
+                        <input type="range" name='fishesTotal' class="form-range" min="1" max="1000" step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Temperature:
+                            <output></output>
+                            <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                title="Setting the water temperature">
+                                ?
+                            </span>
+                        </label>
+                        <input type="range" name='temperature' class="form-range" min="0" max="50" step="1">
+                    </div>
+
+
+                    <div class="row">
+                        <label class="form-label">Waterflow Strength:
+                            <output></output>
+                        </label>
+                        <input type="range" name='waterFlowStrength' class="form-range" min="0" max="10" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Vision Angle:
+                            <output></output>
+                        </label>
+                        <input type="range" name='viewAngle' class="form-range" min="0" max="360" step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Max Speed:
+                            <output></output>
+                        </label>
+                        <input type="range" name='maxSpeed' class="form-range" min="0" max="10" step="0.3">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Force to acceleration conversion ratio:
+                            <output></output>
+                        </label>
+                        <input type="range" name='forceToAccRate' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Cohesion Factor:
+                            <output></output>
+                        </label>
+                        <input type="range" name='cohesionFactor' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Alignment Factor:
+                            <output></output>
+                        </label>
+                        <input type="range" name='alignmentFactor' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Seperation Factor:
+                            <output></output>
+                        </label>
+                        <input type="range" name='seperationFactor' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Fish Vision:
+                            <output></output>
+                        </label>
+                        <input type="range" name='fishVision' class="form-range" min="10" max="500" step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Random Noise:
+                            <output></output>
+                        </label>
+                        <input type="range" name='randomNoiseFactor' class="form-range" min="0.1" max="10" step="0.1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dist/fishes.bundle.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Boids Model </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+        </script>
+
+</head>
+
+<body>
+    <div id="header">
+        <a href="cover.html" class="logo">SwarmVista</a>
+        <span class="vertical-divider"></span>
+        <div id="model-links">
+            <a href="boids.html" class="active">Boids Model</a>
+            <a href="fish.html">Fish Model</a>
+            <a href="bird.html">Bird Model</a>
+            <a href="predator.html">Predator-Prey Model</a>
+            <a href="fruitfly.html">FruitFly Model</a>
+            <a href="fa_firefly.html">Firefly Model</a>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+        <div class="row">
+
+
+            <div class="col-2" id="left-sidebar">
+                <h2>Boids Model</h2>
+                <!-- Model Introduction -->
+                <div class="model-intro">
+                    <p>
+                        The Boids model, designed by Craig Reynolds in 1986, is a computational algorithm that mimics the flocking behavior of birds. The essence of this model is defined by three fundamental rules: alignment cohesion, and separation. These relatively simple rules, when applied in tandem, enable the formation of intricate patterns and coordinated movements typical for bird flocks.
+                        <br>
+                        <b><u><i>Try attracting or fearing Boids by double clicking or tapping and holding the mouse in the visualization panel!</i></u></b>
+                    </p>
+                </div>
+                <hr class="custom-hr">
+                <!-- Video Introduction -->
+                <div class="model-intro">
+                    <h3>Video Introduction</h3>
+                    <iframe width="100%" height="200" src="https://www.youtube.com/embed/bqtqltqcQhw"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <hr class="custom-hr">
+                <!-- Literature References -->
+                <div class="model-intro">
+                    <h3>Related Literature</h3>
+                    <ul class="literature-list">
+                        <li><a href="https://dl.acm.org/doi/10.1145/37402.37406"> Flocks, herds and schools: A distributed behavioral model</a></li>
+                        <li><a href="https://link.springer.com/article/10.1007/s11047-007-9049-5">A review of particle swarm optimization.</a></li>
+                        <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/cav.123">Autonomous boids". Computer Animation and Virtual Worlds</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <div class="col-8 d-flex justify-content-center">
+                <svg id="chart"></svg>
+            </div>
+
+
+            <div class="col-2" id="right-sidebar">
+                <div class="model-intro">
+                    <h2>Control Panel</h2>
+                    <!-- Control Buttons -->
+                    <div class="control-buttons">
+                        <button id='startBt'>Pause</button>
+                        <button id='resetBt'>Reset</button>
+                    </div>
+
+                    <hr class="custom-hr">
+
+                    <!-- Parameters -->
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ifShowVision" value="false"
+                                id="showVisionCheck">
+                            <label class="form-check-label" for="showVisionCheck">
+                                Show Boids Vision
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ifBounce" value="false"
+                                id="bounceCheck">
+                            <label class="form-check-label" for="bounceCheck">
+                                Border Bounce
+                                <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    title="The edges of the visualization panel will turn into a bounce pattern">
+                                    ?
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ifShowColor" value="true"
+                                id="showColorCheck" checked>
+                            <label class="form-check-label" for="showColorCheck">
+                                Color reflects speed
+                                <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                    title="The hue of the color reflects the relationship between the individual's current speed and maximum speed">
+                                    ?
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr class="custom-hr">
+
+                    <div class="row">
+                        <label class="form-label">Boids Total:
+                            <output></output>
+                        </label>
+                        <input type="range" name='boidsTotal' class="form-range" min="1" max="1000" step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Max Speed:
+                            <output></output>
+                        </label>
+                        <input type="range" name='maxSpeed' class="form-range" min="0" max="10" step="0.3">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Force To Accelerations Rate:
+                            <output></output>
+                            <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                title="The extent to which interaction forces between groups affect velocity">
+                                ?
+                            </span>
+                        </label>
+                        <input type="range" name='forceToAccRate' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Cohesion Factor:
+                            <output></output>
+                            <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                title="Individuals are clustered with nearby groups">
+                                ?
+                            </span>
+                        </label>
+                        <input type="range" name='cohesionFactor' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Alignment Factor:
+                            <output></output>
+                            <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                title="Individuals are aligned with nearby groups in the direction">
+                                ?
+                            </span>
+                        </label>
+                        <input type="range" name='alignmentFactor' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Seperation Factor:
+                            <output></output>
+                            <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                title="Individuals avoid colliding with nearby groups">
+                                ?
+                            </span>
+                        </label>
+                        <input type="range" name='seperationFactor' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Boid Vision:
+                            <output></output>
+                        </label>
+                        <input type="range" name='boidVision' class="form-range" min="10" max="500" step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Random Noise:
+                            <output></output>
+                        </label>
+                        <input type="range" name='randomNoiseFactor' class="form-range" min="0.1" max="10" step="0.1">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="dist/Boids.bundle.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+</body>
+
+</html>

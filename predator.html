@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Predator-Prey Model </title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+        </script>
+
+</head>
+
+<body>
+    <div id="header">
+        <a href="cover.html" class="logo">SwarmVista</a>
+        <span class="vertical-divider"></span>
+        <div id="model-links">
+            <a href="boids.html">Boids Model</a>
+            <a href="fish.html">Fish Model</a>
+            <a href="bird.html">Bird Model</a>
+            <a href="predator.html" class="active">Predator-Prey Model</a>
+            <a href="fruitfly.html">FruitFly Model</a>
+            <a href="fa_firefly.html">Firefly Model</a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-2" id="left-sidebar">
+                <h2>Predator-Prey Model</h2>
+                <!-- Model Introduction -->
+                <div class="model-intro">
+                    <p>
+                        This model captures predator-prey interactions.
+                        In this model, the shark represents the predator and the prey is represented by common fish;
+                        the shark rushes towards the fish within its field of view, and the prey hug more tightly as the
+                        shark approaches.
+                        This represents the predator-prey relationship in an ecological context.
+                        <br>
+                        <b><u><i>Change the rules of movement of hunters and prey and redefine this chase!</i></u></b>
+                    
+                </div>
+                <hr class="custom-hr">
+                <!-- Video Introduction -->
+                <div class="model-intro">
+                    <h3>Video Introduction</h3>
+                    <iframe width=100% height=200 src="https://www.youtube.com/embed/rkQB4zEJggE"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
+                </div>
+                <hr class="custom-hr">
+                <!-- Literature References -->
+                <div class="model-intro">
+                    <h3>Related Literature</h3>
+                    <ul class="literature-list">
+                        <li><a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.2307/1940005">The orgins and
+                                evolution of predator‐prey theory</a></li>
+                        <li><a href="https://www.annualreviews.org/doi/abs/10.1146/annurev.ecolsys.31.1.79">The
+                                evolution of predator-prey interactions: theory and evidence</a></li>
+                        <li><a href="https://esajournals.onlinelibrary.wiley.com/doi/abs/10.2307/1934346">The stability
+                                of predator‐prey systems</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Control Panel -->
+            <div class="col-8 d-flex justify-content-center">
+                <svg id="chart"></svg>
+            </div>
+
+
+            <div class="col-2" id="right-sidebar">
+                <div class="model-intro">
+                    <h2>Control Panel</h2>
+                    <!-- Control Buttons -->
+                    <div class="control-buttons">
+                        <button id='startBt'>Pause</button>
+                        <button id='resetBt'>Reset</button>
+                    </div>
+                    <hr class="custom-hr">
+                    <!-- Parameters -->
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ifShowVision" value="false"
+                                id="showVisionCheck">
+                            <label class="form-check-label" for="showVisionCheck">
+                                Show Prey Vision
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ifBounce" value="false"
+                                id="bounceCheck">
+                            <label class="form-check-label" for="bounceCheck">
+                                Border Bounce
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ifShowPredatorVision" value="false"
+                                id="showPredatorVisionCheck">
+                            <label class="form-check-label" for="showPredatorVisionCheck">
+                                Show Predator Vision
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="ifShowChased" value="false"
+                                id="showChasedCheck">
+                            <label class="form-check-label" for="showChasedCheck">
+                                Show Chased
+                            </label>
+                        </div>
+                    </div>
+                    <hr class="custom-hr">
+                    <div class="row">
+                        <label class="form-label">Prey Total:
+                            <output></output>
+                        </label>
+                        <input type="range" name='preysTotal' class="form-range" min="1" max="1000" step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Predator Total:
+                            <output></output>
+                        </label>
+                        <input type="range" name='predatorTotal' class="form-range" min="1" max="20" step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Prey MaxSpeed:
+                            <output></output>
+                        </label>
+                        <input type="range" name='maxSpeed' class="form-range" min="0" max="10" step="0.3">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Predator maxSpeed:
+                            <output></output>
+                        </label>
+                        <input type="range" name='predatorspeed' class="form-range" min="0" max="10" step="0.3">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Force To Acc Rate:
+                            <output></output>
+                        </label>
+                        <input type="range" name='forceToAccRate' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Fear Degree:
+                            <output></output>
+                        </label>
+                        <input type="range" name='predatorforceToAccRate' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Prey Vision:
+                            <output></output>
+                        </label>
+                        <input type="range" name='preyVision' class="form-range" min="10" max="500" step="1">
+                    </div>
+
+
+                    <div class="row">
+                        <label class="form-label">Predator Vision:
+                            <output></output>
+                        </label>
+                        <input type="range" name='predatorVision' class="form-range" min="0" max="2000" step="50">
+                    </div>
+
+
+                    <div class="row">
+                        <label class="form-label">Predator Chase Speed:
+                            <output></output>
+                        </label>
+                        <input type="range" name='predatorChaseSpeed' class="form-range" min="0" max="50" step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Prey Escape Speed:
+                            <output></output>
+                        </label>
+                        <input type="range" name='preyEscapeSpeed' class="form-range" min="0" max="50" step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Prey Cohesion Escape Factor:
+                            <output></output>
+                            <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
+                                title="Degree of prey holding when approached by a predator">
+                                ?
+                            </span>
+                        </label>
+                        <input type="range" name='preyCohesionEscapeFactor' class="form-range" min="0" max="20"
+                            step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Cohesion Factor:
+                            <output></output>
+                        </label>
+                        <input type="range" name='cohesionFactor' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Alignment Factor:
+                            <output></output>
+                        </label>
+                        <input type="range" name='alignmentFactor' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Seperation Factor:
+                            <output></output>
+                        </label>
+                        <input type="range" name='seperationFactor' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Prey Noise:
+                            <output></output>
+                        </label>
+                        <input type="range" name='preyNoise' class="form-range" min="0.1" max="10" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Predator Noise:
+                            <output></output>
+                        </label>
+                        <input type="range" name='predatorNoise' class="form-range" min="0.1" max="10" step="0.1">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <script src="dist/Predators.bundle.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+        });
+    </script>
+</body>
+
+</html>
