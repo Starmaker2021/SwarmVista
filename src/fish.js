@@ -15,12 +15,12 @@ export let defaultConfig = {
     cohesionFactor: 1,
     seperationFactor: 1,
     obstacles: [ 
-        { x: 300, y: 300, radius: 100 }, 
-        { x: 900, y: 200, radius: 100 },
-        { x: 1200, y: 500, radius: 100 },
-        { x: 1200, y: 800, radius: 100 },
-        { x: 800, y: 500, radius: 100 },
-        { x: 400, y: 600, radius: 100 },
+        { x: 300, y: 300, radius: 95 }, 
+        { x: 900, y: 200, radius: 95 },
+        { x: 1200, y: 500, radius: 95 },
+        { x: 1200, y: 800, radius: 95},
+        { x: 800, y: 500, radius: 95 },
+        { x: 400, y: 600, radius: 95 },
     ],
     temperature: 20, 
     waterFlow: new Vector(0, 0), 
@@ -94,8 +94,8 @@ export class Fish {
         this.velocity.x += this.force.x * config.forceToAccRate;
         this.velocity.y += this.force.y * config.forceToAccRate;
 
-        this.velocity.x += config.waterFlow.x*config.waterFlowStrength;
-        this.velocity.y += config.waterFlow.y*config.waterFlowStrength;
+        this.velocity.x += config.waterFlow.x*config.waterFlowStrength*0.1;
+        this.velocity.y += config.waterFlow.y*config.waterFlowStrength*0.1;
 
         let velocityMagnitude = Math.sqrt(this.velocity.x ** 2 + this.velocity.y ** 2);
         if (velocityMagnitude > config.maxSpeed) {

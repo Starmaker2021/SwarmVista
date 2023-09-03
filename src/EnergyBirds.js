@@ -60,8 +60,8 @@ if (config.ifShowVision) {
 	  .attr("r", function(d){
 		return d.birdVision; 
 	  }) 
-	  .attr("fill", "lightblue")
-	  .attr("stroke", "lightblue")
+	  .attr("fill", "steelblue")
+	  .attr("stroke", "steelblue")
 	  .style('opacity', function (d) { return d.isFlying() ? 0.2 : 0; }); 
   }
   
@@ -210,7 +210,7 @@ const weatherColors = {
                     .duration(200)
                     .attr("transform", "translate(0,0)");  
                 });
-            }, 1000 * config.windStrength);  
+            }, 500 * config.windStrength);  
             break;
 		}
 }
