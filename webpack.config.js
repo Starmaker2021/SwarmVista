@@ -4,7 +4,7 @@ module.exports = {
 
   entry: {
     Boids: './src/Boids.js',
-    Fishes: './src/fishes.js',
+    Fishes: './src/Boids.js',
     FireFly: './src/fa_firefly.js',
     Predators: './src/Predators.js',
     EnergyBirds: './src/EnergyBirds.js',
