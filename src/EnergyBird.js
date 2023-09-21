@@ -19,14 +19,13 @@ export let defaultConfig = {
     energyRecoverRate: 5,
     lowEnergyVision: 300,
     trees: [
-        { x: 300, y: 400, radius: 100 },
-        { x: 500, y: 600, radius: 100 },
-        { x: 700, y: 500, radius: 100 },
-        { x: 900, y: 300, radius: 100 },
-        { x: 1250, y: 200, radius: 100 },
-        { x: 1250, y: 600, radius: 100 },
-        { x: 400, y: 200, radius: 100 },
-        { x: 1500, y: 400, radius: 100 },
+        { x: 300, y: 200, radius: 100 },
+        { x: 700, y: 200, radius: 100 },
+        { x: 350, y: 760, radius: 100 },
+        { x: 200, y: 500, radius: 100 },
+        { x: 1000, y: 400, radius: 100 },
+        { x: 550, y: 500, radius: 100 },
+        { x: 900, y: 700, radius: 100 },
 
     ],
     weather: 0,//0 for sunny days, 1 for foggy days, 2 for windy days

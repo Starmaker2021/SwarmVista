@@ -2,7 +2,7 @@ import { Fish, config, defaultConfig } from './fish.js';
 import * as d3 from 'd3';
 
 
-var numFishes = config.fishesTotal; 
+var numFishes = config.fishesTotal;
 let imageWidth = 25;
 let imageHeight = 18.5;
 let rockWidth = 200;
@@ -31,7 +31,7 @@ svg.on('mousedown', () => { mouse.isDown = true; })
 	})
 	.on('dblclick', () => {
 		mouse.isDblClick = true;
-		setTimeout(() => { mouse.isDblClick = false; }, 500); 
+		setTimeout(() => { mouse.isDblClick = false; }, 500);
 	});
 
 
@@ -57,7 +57,7 @@ function updateBoids() {
 		.attr("transform", function (d) {
 			const centerX = d.position.x;
 			const centerY = d.position.y;
-			const rotation = Math.atan2(d.velocity.y, d.velocity.x) * (180 / Math.PI) + 180; 
+			const rotation = Math.atan2(d.velocity.y, d.velocity.x) * (180 / Math.PI) + 180;
 			return `rotate(${rotation},${centerX},${centerY})`;
 		});
 
@@ -69,9 +69,9 @@ function updateBoids() {
 			.attr("d", function (d) {
 				const x = d.position.x;
 				const y = d.position.y;
-				const r = config.fishVision; 
-				const startAngle = Math.atan2(d.velocity.y, d.velocity.x) - 30 - config.viewAngle / 2 * (Math.PI / 180); 
-				const endAngle = startAngle + config.viewAngle * (Math.PI / 180); 
+				const r = config.fishVision;
+				const startAngle = Math.atan2(d.velocity.y, d.velocity.x) - 30 - config.viewAngle / 2 * (Math.PI / 180);
+				const endAngle = startAngle + config.viewAngle * (Math.PI / 180);
 				return d3.arc()({
 					innerRadius: 0,
 					outerRadius: r,
@@ -104,7 +104,7 @@ function renderFishes(fishes) {
 		.attr("transform", function (d) {
 			const centerX = d.position.x;
 			const centerY = d.position.y;
-			const rotation = Math.atan2(d.velocity.y, d.velocity.x) * (180 / Math.PI) + 90; 
+			const rotation = Math.atan2(d.velocity.y, d.velocity.x) * (180 / Math.PI) + 90;
 			return `rotate(${rotation},${centerX},${centerY})`;
 		});
 }
@@ -116,26 +116,26 @@ svg.selectAll(".obstacle")
 	.data(config.obstacles)
 	.enter()
 	.append("image")
-	.attr('xlink:href', 'img/rock.png') 
-	.attr('width', rockWidth) 
-	.attr('height', rockHeight) 
+	.attr('xlink:href', 'img/rock.png')
+	.attr('width', rockWidth)
+	.attr('height', rockHeight)
 	.attr("class", "obstacle")
-	.attr('x', function (d) { return d.x - d.radius; }) 
-	.attr('y', function (d) { return d.y - d.radius; }); 
+	.attr('x', function (d) { return d.x - d.radius; })
+	.attr('y', function (d) { return d.y - d.radius; });
 
 
 let dragHandler = d3.drag()
 	.on("drag", function (event, d) {
 		d3.select(this)
 			.attr("x", d.x = event.x - d.radius)
-			.attr("y", d.y = event.y - d.radius); 
+			.attr("y", d.y = event.y - d.radius);
 	})
 	.on("end", function (event, d) {
 
 		for (let obstacle of config.obstacles) {
-			if (obstacle === d) { 
-				obstacle.x = d.x + d.radius; 
-				obstacle.y = d.y + d.radius; 
+			if (obstacle === d) {
+				obstacle.x = d.x + d.radius;
+				obstacle.y = d.y + d.radius;
 				break;
 			}
 		}
@@ -155,16 +155,17 @@ setTimeout(delayedMethod, 1000);
 
 
 function drawWaterFlowArrow() {
-	const scaleFactor = 15; 
+    const scaleFactor = 15;
 
-	const arrowLength = Math.sqrt(Math.pow(config.waterFlow.getX(), 2) + Math.pow(config.waterFlow.getY(), 2)) * scaleFactor;
 
-	const angle = Math.atan2(config.waterFlow.getY(), config.waterFlow.getX()) * (180 / Math.PI);
+    const arrowLength = Math.sqrt(Math.pow(config.waterFlow.getX(), 2) + Math.pow(config.waterFlow.getY(), 2)) * scaleFactor;
 
-	const arrowEndX = 1150; 
-	const arrowEndY = 100;
-	const arrowStartX = arrowEndX - arrowLength * Math.cos(angle * (Math.PI / 180));
-	const arrowStartY = arrowEndY - arrowLength * Math.sin(angle * (Math.PI / 180));
+    const angle = Math.atan2(config.waterFlow.getY(), config.waterFlow.getX()) * (180 / Math.PI);
+
+    const arrowStartX = 1150; 
+    const arrowStartY = 100;  
+    const arrowEndX = arrowStartX + arrowLength * Math.cos(angle * (Math.PI / 180));
+    const arrowEndY = arrowStartY + arrowLength * Math.sin(angle * (Math.PI / 180));
 
 	svg.append("line")
 		.attr("x1", arrowStartX)
@@ -188,12 +189,38 @@ function drawWaterFlowArrow() {
 		.attr("d", "M 0,-5 L 10 ,0 L 0,5")
 		.attr("fill", "lightseaGreen")
 		.style("stroke", "none");
+
+	const dragArrowHandler = d3.drag()
+		.on("start", function (event) {
+			d3.select(this).attr("stroke", "darkblue");  
+		})
+		.on("drag", function (event) {
+			const dx = event.x - arrowStartX; 
+			const dy = event.y - arrowStartY;  
+	
+			const newAngle = Math.atan2(dy, dx);
+			const newLength = Math.sqrt(dx * dx + dy * dy) / scaleFactor;
+	
+			config.waterFlow.setX(newLength * Math.cos(newAngle));
+			config.waterFlow.setY(newLength * Math.sin(newAngle));
+	
+
+			svg.selectAll("line").remove();
+			svg.select("defs").remove();
+			drawWaterFlowArrow();
+		})
+		.on("end", function (event) {
+			d3.select(this).attr("stroke", "lightseaGreen");  
+		});
+
+	d3.select("line").call(dragArrowHandler);
+
 }
 
 
-svg.selectAll("line").remove(); 
-svg.select("defs").remove(); 
-drawWaterFlowArrow(); 
+svg.selectAll("line").remove();
+svg.select("defs").remove();
+drawWaterFlowArrow();
 
 var checkboxes = document.querySelectorAll(".form-check-input");
 for (let checkbox of checkboxes) {
@@ -271,15 +298,15 @@ for (let waterFlowInput of waterFlowInputs) {
 		let id = this.id;
 		let value = parseFloat(this.value);
 		if (id === 'speedx') {
-			config.waterFlow.setX(value); 
+			config.waterFlow.setX(value);
 		} else if (id === 'speedy') {
-			config.waterFlow.setY(value); 
+			config.waterFlow.setY(value);
 		}
 		updateBoids();
-		
-		svg.selectAll("line").remove(); 
-		svg.select("defs").remove(); 
-		drawWaterFlowArrow(); 
+
+		svg.selectAll("line").remove();
+		svg.select("defs").remove();
+		drawWaterFlowArrow();
 	})
 }
 

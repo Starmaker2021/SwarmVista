@@ -146,24 +146,17 @@
                     </div>
 
                     <div class="row">
-                        <label class="form-label">Predator maxSpeed:
+                        <label class="form-label">Predator MaxSpeed:
                             <output></output>
                         </label>
                         <input type="range" name='predatorspeed' class="form-range" min="0" max="10" step="0.3">
                     </div>
 
                     <div class="row">
-                        <label class="form-label">Force To Acc Rate:
+                        <label class="form-label">Predator Vision:
                             <output></output>
                         </label>
-                        <input type="range" name='forceToAccRate' class="form-range" min="0" max="3" step="0.1">
-                    </div>
-
-                    <div class="row">
-                        <label class="form-label">Fear Degree:
-                            <output></output>
-                        </label>
-                        <input type="range" name='predatorforceToAccRate' class="form-range" min="0" max="3" step="0.1">
+                        <input type="range" name='predatorVision' class="form-range" min="0" max="2000" step="50">
                     </div>
 
                     <div class="row">
@@ -171,14 +164,6 @@
                             <output></output>
                         </label>
                         <input type="range" name='preyVision' class="form-range" min="10" max="500" step="1">
-                    </div>
-
-
-                    <div class="row">
-                        <label class="form-label">Predator Vision:
-                            <output></output>
-                        </label>
-                        <input type="range" name='predatorVision' class="form-range" min="0" max="2000" step="50">
                     </div>
 
 
@@ -197,7 +182,7 @@
                     </div>
 
                     <div class="row">
-                        <label class="form-label">Prey Cohesion Escape Factor:
+                        <label class="form-label">Prey Escape Cohesion:
                             <output></output>
                             <span class="info-circle" data-bs-toggle="tooltip" data-bs-placement="right"
                                 title="Degree of prey holding when approached by a predator">
@@ -206,6 +191,20 @@
                         </label>
                         <input type="range" name='preyCohesionEscapeFactor' class="form-range" min="0" max="20"
                             step="1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Prey Force/Acc Rate:
+                            <output></output>
+                        </label>
+                        <input type="range" name='forceToAccRate' class="form-range" min="0" max="3" step="0.1">
+                    </div>
+
+                    <div class="row">
+                        <label class="form-label">Predator Force/Acc Rate:
+                            <output></output>
+                        </label>
+                        <input type="range" name='predatorforceToAccRate' class="form-range" min="0" max="3" step="0.1">
                     </div>
 
                     <div class="row">
